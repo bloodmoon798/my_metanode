@@ -1,0 +1,72 @@
+{
+	"id": "853c3cdbe13508caa9630454517d06eb",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"testInt.sol": {
+				"content": "// // SPDX-License-Identifier: MIT\n// pragma solidity ^0.8.0;\n\n// contract TestInt {\n//     function add(uint8 x, uint16 y) public pure returns (uint256) {\n//         return x + y;\n//     }\n\n//     function devide(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x / y;\n//     }\n\n//     function modulo(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x % y;\n//     }\n\n//     function exponentiation(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x**y;\n//     }\n\n//     // 3 -> 0000 0011 左位移1位 0000 0110 -> 输出6, 左位移2位 0000 1100 -> 12\n//     // x左移y位 = x * 2 ** y\n//     function leftShift(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x << y;\n//     }\n\n//     // x右移y位 = x / 2 ** y\n//     function rightShift(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x >> y;\n//     }\n\n//     // 按位与(除非两个1返回1，否则返回0)\n//     // 0000 1100 => 12\n//     // 0000 0101 => 5\n//     // 0000 0100 => 4\n//     function and(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x & y;\n//     }\n\n//     // 按位或(除非两个0返回0，否则返回1)\n//     // 0000 1100 => 12\n//     // 0000 0101 => 5\n//     // 0000 1101 => 13\n//     function or(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x | y;\n//     }\n\n//     // 异或(上下相同返回0，不相同返回1)\n//     // 0000 1100 => 12\n//     // 0000 0101 => 5\n//     // 0000 1001 => 9\n//     function xor(uint8 x, uint8 y) public pure returns (uint256) {\n//         return x ^ y;\n//     }\n// }\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.30;\"\n--> testInt.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.30;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "testInt.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"testInt.sol": {
+				"ast": {
+					"absolutePath": "testInt.sol",
+					"exportedSymbols": {},
+					"id": 1,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [],
+					"src": "1628:0:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

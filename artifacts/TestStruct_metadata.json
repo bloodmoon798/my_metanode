@@ -1,0 +1,185 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint8",
+								"name": "age",
+								"type": "uint8"
+							},
+							{
+								"components": [
+									{
+										"internalType": "string",
+										"name": "label",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "value",
+										"type": "string"
+									}
+								],
+								"internalType": "struct TestStruct.Hobby[]",
+								"name": "hobbies",
+								"type": "tuple[]"
+							}
+						],
+						"internalType": "struct TestStruct.Penson",
+						"name": "p",
+						"type": "tuple"
+					}
+				],
+				"name": "addPenson",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getHobbies",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "label",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "value",
+								"type": "string"
+							}
+						],
+						"internalType": "struct TestStruct.Hobby[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPersons",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint8",
+								"name": "age",
+								"type": "uint8"
+							},
+							{
+								"components": [
+									{
+										"internalType": "string",
+										"name": "label",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "value",
+										"type": "string"
+									}
+								],
+								"internalType": "struct TestStruct.Hobby[]",
+								"name": "hobbies",
+								"type": "tuple[]"
+							}
+						],
+						"internalType": "struct TestStruct.Penson[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "persons",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "age",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestStruct.sol": "TestStruct"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestStruct.sol": {
+			"keccak256": "0x8d23f7dddb5ba75cc4ebb42631649a8f1bc8e145ac5c8b6e2040303727f6b8cc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f7cd0fe232e62dd2933186193a599b1110661b0ef342436da910a838b354b60b",
+				"dweb:/ipfs/QmX4g1czs1PBtpo2bXcYm2oMAjkMYYr8PoYBv1Ye8iyuGm"
+			]
+		}
+	},
+	"version": 1
+}
