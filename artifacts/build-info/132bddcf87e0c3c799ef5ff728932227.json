@@ -1,0 +1,68 @@
+{
+	"id": "132bddcf87e0c3c799ef5ff728932227",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.5.5",
+	"solcLongVersion": "0.5.5+commit.47a71e8f",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"testOverFlow.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ~0.5.0;"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"testOverFlow.sol": {
+				"ast": {
+					"absolutePath": "testOverFlow.sol",
+					"exportedSymbols": {},
+					"id": 2,
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"~",
+								"0.5",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:23:0"
+						}
+					],
+					"src": "33:23:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"id": "edf722d3cc44f41d862a1f82bdc201c5",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"testOverflow.sol": {
+				"content": "// // SPDX-License-Identifier: MIT\n// pragma solidity ~0.8.0;\n\n// contract TestOverflow {\n//     // 255 => 1111 1111\n//     // 255 + 1 => 1 | 0000 0000 => 0\n//     function add1() public pure returns (uint8) {\n//         unchecked {\n//             uint8 x = 128;\n//             uint8 y = x * 2;\n//             return y; // 0\n//         }\n//     }\n\n//     // 240 => 1111 0000\n//     // 16 => 0001 0000\n//     // 256 => 1 0000 0000 => uint 截取后8位 => 0000 0000 => 0\n//     function add2() public pure returns (uint8) {\n//         unchecked {\n//             uint8 i = 240;\n//             uint8 j = 16;\n//             uint8 k = i + j;\n//             return k;\n//         }\n//     }\n\n//     // 1 => 0000 0001\n//     // 2 => 0000 0010\n//     // 1 - 2 => 1111 1111 => 255\n//     function sub1() public pure returns (uint8) {\n//         unchecked {\n//             uint8 m = 1;\n//             uint8 n = m - 2;\n//             return n;\n//         }\n//     }\n// }\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"errors": [
+			{
+				"component": "general",
+				"errorCode": "3420",
+				"formattedMessage": "Warning: Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.30;\"\n--> testOverflow.sol\n\n",
+				"message": "Source file does not specify required compiler version! Consider adding \"pragma solidity ^0.8.30;\"",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": -1,
+					"file": "testOverflow.sol",
+					"start": -1
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"testOverflow.sol": {
+				"ast": {
+					"absolutePath": "testOverflow.sol",
+					"exportedSymbols": {},
+					"id": 1,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [],
+					"src": "959:0:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
