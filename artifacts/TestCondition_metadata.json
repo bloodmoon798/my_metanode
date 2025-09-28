@@ -1,0 +1,188 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "available",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "required",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
+					}
+				],
+				"name": "TransferFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "Unauthorized",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "condition",
+						"type": "bool"
+					}
+				],
+				"name": "assertError",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "condition",
+						"type": "bool"
+					}
+				],
+				"name": "requireError",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "condition",
+						"type": "bool"
+					}
+				],
+				"name": "revertError",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "condition",
+						"type": "bool"
+					}
+				],
+				"name": "revertError2",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "condition",
+						"type": "bool"
+					}
+				],
+				"name": "revertError3",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestCondition.sol": "TestCondition"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestCondition.sol": {
+			"keccak256": "0x70b893aa9e9fe624362490509c0bc0ef7d222ab6b3d720ed676763b509f017ef",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c55c2cd3ae8cd90396d522c41e032776cef722f7c66f48f5f5b02a1f463270a6",
+				"dweb:/ipfs/QmcbRfNDR4T4weTjgwPXsUE7CqG4ph9PtNNZyDqbRN2kA1"
+			]
+		}
+	},
+	"version": 1
+}

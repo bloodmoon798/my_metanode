@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getMessageDetails",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestMessageInfo.sol": "MessageInfo"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestMessageInfo.sol": {
+			"keccak256": "0x5a4565515229e21225e15e4cddc5beaf40d8dafa70a008562e000ece3b2fdb9a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://92b5ab471407a6dfdb594a60a336d600661de5e055028e2dbee16442cecf6bc9",
+				"dweb:/ipfs/QmVnVvxndJicpFENk5CNsdcRK3nHQZ9oDcUxaDJUP4MfUm"
+			]
+		}
+	},
+	"version": 1
+}

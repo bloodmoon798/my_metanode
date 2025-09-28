@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "testMsg",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testTx",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestMsgVsTx.sol": "TestMsgVsTx"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestMsgVsTx.sol": {
+			"keccak256": "0xc4a3a322eecf7fb61f3834a98ed6944ca40fed4336e898ed417ea2d94bfb38a4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6b2ece4b2981e9ce4d97a6fe9126b53737cc7497df78c4ba3e2179a160e243dd",
+				"dweb:/ipfs/QmaWhNa3yc5ZfcAwphVJ2rYQ23yB2Pd4K7eaHGiY7siRa8"
+			]
+		}
+	},
+	"version": 1
+}

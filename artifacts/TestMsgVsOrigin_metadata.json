@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "testMsg",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestMsgVsOrigin.sol": "TestMsgVsOrigin"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestMsgVsOrigin.sol": {
+			"keccak256": "0x27f1b2287bd52e813c4e447021aa6485c5e2143f4c0748301d37ec261a54e377",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://94d5bee446ce79aa232decc1800798c5bb565e50dfc2afe19d74d24608dd5b92",
+				"dweb:/ipfs/QmPTMk1ug3HVd6gMgx4mk2aRcsZeSjXaJye5rekY2uVST8"
+			]
+		}
+	},
+	"version": 1
+}
