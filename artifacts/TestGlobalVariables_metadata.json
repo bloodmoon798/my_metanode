@@ -1,0 +1,71 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getBlockDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "test",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestGlobalVariables.sol": "TestGlobalVariables"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestGlobalVariables.sol": {
+			"keccak256": "0xc711ee53138c70b5aede0d75d57274ab8007354e1c3bd7f6bfaf51ee8fb720b3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c03146bbe404bc01a69b9ddb127a0db5639b06f45663c3a8a69972cd1bec297c",
+				"dweb:/ipfs/QmSgd6r3egoWnkqG2DqKzjGVmiFaSCMmdibxzNuqhgHezX"
+			]
+		}
+	},
+	"version": 1
+}
