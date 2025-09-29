@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getSig",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TestReceiveAndFallback.sol": "GetSig"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TestReceiveAndFallback.sol": {
+			"keccak256": "0x440294a418f821910b2ea470e6015b6e61fd8bbd9bec65001a093f6b9120e49c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9d9c9df3910c69feea474e0150ad28526fd0fb46f39fd09234c95e4b3cdb0b4d",
+				"dweb:/ipfs/QmdAKX1E7B5BSksH79DvdJ9sjYDaxYXEBvkizSduv9rtSq"
+			]
+		}
+	},
+	"version": 1
+}
