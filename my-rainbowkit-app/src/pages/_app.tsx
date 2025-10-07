@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
 
@@ -14,7 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>
-        <RainbowKitProvider theme={midnightTheme()} coolMode>
+        <RainbowKitProvider
+          theme={midnightTheme()}
+          coolMode
+          modalSize="compact"
+        >
           <Component {...pageProps} />
         </RainbowKitProvider>
       </QueryClientProvider>

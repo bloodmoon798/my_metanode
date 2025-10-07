@@ -100,3 +100,33 @@
     flex-direction: column;
   }
 }
+
+.testButton {
+  width: 150px;
+  height: 70px;
+  margin: 20px 0;
+  font-size: 20px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #0d76fc;
+    color: white;
+  }
+}
+
+.closeButton {
+  &:hover {
+    cursor: pointer;
+    background-color: #0d76fc;
+    color: white;
+  }
+}
+
+.walletLi {
+  padding: 4px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+  }
+}
