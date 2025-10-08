@@ -19,6 +19,12 @@ const nextConfig = {
         port: "",
         pathname: "/assets/generic/html/**",
       },
+      {
+        protocol: "https",
+        hostname: "etherscan.io",
+        port: "",
+        pathname: "/images/svg/brands/**",
+      },
     ],
   },
 };

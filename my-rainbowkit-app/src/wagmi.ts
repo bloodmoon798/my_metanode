@@ -9,18 +9,11 @@ import {
   polygon,
 } from "wagmi/chains";
 
+const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID!;
+
 export const config = getDefaultConfig({
   appName: "RainbowKit App",
-  projectId: "d89da9f08a8a0455fb74a66d499ccf92",
-  chains: [
-    sepolia,
-    polygonAmoy,
-    mainnet,
-    polygon,
-    optimism,
-    arbitrum,
-    base,
-    // ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [sepolia] : []),
-  ],
+  projectId: PROJECT_ID,
+  chains: [sepolia, polygonAmoy, mainnet, polygon, optimism, arbitrum, base],
   ssr: true,
 });

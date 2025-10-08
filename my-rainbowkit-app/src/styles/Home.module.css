@@ -121,12 +121,3 @@
     color: white;
   }
 }
-
-.walletLi {
-  padding: 4px 0;
-  &:hover {
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-  }
-}
