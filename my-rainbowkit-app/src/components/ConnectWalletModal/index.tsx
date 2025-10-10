@@ -1,56 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { WALLETS, NETWORKS } from "@/constants";
+import { NETWORKS } from "@/constants";
 
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import walletStyles from "@/styles/Wallet.module.css";
+import type {
+  EIP6963ProviderDetail,
+  EIP6963AnnounceProviderEvent,
+  ConnectWalletModalProps,
+} from "@/interface";
 
-export default function ConnectWalletModal({ setWalletData }) {
+export default function ConnectWalletModal({
+  setWalletData,
+  detectedWallets,
+  setDetectedWallets,
+}: ConnectWalletModalProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const connectWallet = async (walletName: string) => {
-    if (typeof window.ethereum !== "undefined") {
-      try {
-        setLoading(true);
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        console.log(provider, "provider");
+  const connectWallet = async (wallet: EIP6963ProviderDetail) => {
+    try {
+      setLoading(true);
 
-        // 1. 拿到当前钱包帐户
-        const accounts = await provider.send("eth_requestAccounts", []);
-        const address = accounts[0];
-        // 2. 拿到当前网络
-        const network = await provider.getNetwork();
-        console.log(network, "network");
+      const browserProvider = new ethers.BrowserProvider(wallet.provider);
+      // 拿到当前钱包帐户
+      const accounts = await browserProvider.send("eth_requestAccounts", []);
+      const address = accounts[0];
 
-        // 3. 拿到钱包余额并做处理
-        const balance = await provider.getBalance(address);
-        const newBalance = ethers.formatEther(balance);
-        const formattedBalance = parseFloat(newBalance).toFixed(2);
+      // 使用JSON-RPC provider,默认连接第一个网络Sepolia
+      const defaultNetwork = NETWORKS[0];
 
-        setWalletData({
-          provider,
-          walletName,
-          address,
-          balance: {
-            amount: formattedBalance,
-            symbol: NETWORKS.find((n) => n.name === network?.name)?.symbol,
-          },
-          connected: true,
-          network: network?.name,
-        });
+      const jsonRpcProvider = new ethers.JsonRpcProvider(defaultNetwork.rpcUrl);
 
-        setIsOpen(false);
-      } catch (error: any) {
-        console.log("无法连接", error.message);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      console.log(`请安装 ${walletName}`);
+      // 3. 拿到钱包余额并做处理
+      const balance = await jsonRpcProvider.getBalance(address);
+      const newBalance = ethers.formatEther(balance);
+      const formattedBalance = parseFloat(newBalance).toFixed(2);
+
+      setWalletData({
+        provider: browserProvider,
+        walletName: wallet.info.name,
+        address,
+        balance: {
+          amount: formattedBalance,
+          symbol: defaultNetwork?.symbol,
+        },
+        connected: true,
+        network: defaultNetwork?.name,
+      });
+
+      setIsOpen(false);
+    } catch (error: any) {
+      console.log("连接失败", error.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+  const walletMap = new Map<string, EIP6963ProviderDetail>();
+
+  // 监听钱包广播事件
+  const handleAnnouncement = (event: EIP6963AnnounceProviderEvent) => {
+    const { detail } = event;
+    walletMap.set(detail.info.uuid, detail);
+    setDetectedWallets(Array.from(walletMap.values()));
+  };
+
+  useEffect(() => {
+    window.addEventListener(
+      "eip6963:announceProvider",
+      handleAnnouncement as EventListener
+    );
+
+    // 请求所有钱包广播自己
+    window.dispatchEvent(new Event("eip6963:requestProvider"));
+
+    return () => {
+      window.removeEventListener(
+        "eip6963:announceProvider",
+        handleAnnouncement as EventListener
+      );
+    };
+  }, []);
 
   return (
     <div>
@@ -86,21 +118,21 @@ export default function ConnectWalletModal({ setWalletData }) {
                 <div style={{ marginLeft: 20 }}>Loading...</div>
               ) : (
                 <ul className={walletStyles.walletList}>
-                  {WALLETS.map((wallet) => (
+                  {detectedWallets.map((wallet) => (
                     <li
                       className={walletStyles.walletLi}
-                      key={wallet.name}
-                      onClick={() => connectWallet(wallet.name)}
+                      key={wallet.info.uuid}
+                      onClick={() => connectWallet(wallet)}
                     >
                       <Image
                         className={walletStyles.walletIcon}
-                        src={wallet.icon}
-                        alt={wallet.name}
+                        src={wallet.info.icon}
+                        alt={wallet.info.name}
                         width={20}
                         height={20}
                       />
                       <div className={walletStyles.walletName}>
-                        <div>{wallet.name}</div>
+                        <div>{wallet.info.name}</div>
                       </div>
                     </li>
                   ))}

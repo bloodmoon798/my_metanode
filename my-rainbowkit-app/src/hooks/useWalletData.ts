@@ -1,16 +1,5 @@
 import { useState } from "react";
-
-interface WalletData {
-  address: string;
-  balance: {
-    amount: string;
-    symbol: string;
-  };
-  connected: boolean;
-  walletName: string;
-  provider: any;
-  network: string;
-}
+import type { WalletData } from "@/interface";
 
 const DEFAULT_WALLET_DATA: WalletData = {
   address: "",
