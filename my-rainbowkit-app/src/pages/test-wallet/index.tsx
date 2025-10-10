@@ -6,9 +6,18 @@ import useWalletData from "@/hooks/useWalletData";
 import { NETWORKS, WALLETS } from "@/constants";
 import styles from "@/styles/Home.module.css";
 import walletStyles from "@/styles/Wallet.module.css";
+import type { EIP6963ProviderDetail } from "@/interface";
 
 export default function TestWallet() {
   const { DEFAULT_WALLET_DATA, walletData, setWalletData } = useWalletData();
+
+  const [detectedWallets, setDetectedWallets] = useState<
+    EIP6963ProviderDetail[]
+  >([]);
+
+  const detectedWallet = detectedWallets.find(
+    (item) => item.info.name === walletData.walletName
+  )!;
 
   const walletIconSrc = WALLETS.find(
     (item) => item.name === walletData.walletName
@@ -19,54 +28,30 @@ export default function TestWallet() {
   const currentNetwork = NETWORKS.find((n) => n.name === walletData.network)!;
 
   const handleChangeNetwork = async (networkName: string) => {
+    const targetNetwork = NETWORKS.find((n) => n.name === networkName)!;
     try {
-      const targetNetwork = NETWORKS.find((n) => n.name === networkName)!;
-
-      // 移除旧的监听器,避免重复监听
-      if (window.ethereum?.removeAllListeners) {
-        window.ethereum.removeAllListeners("chainChanged");
-      }
-
-      // 先设置监听器
-      const handleChainChanged = async () => {
-        try {
-          // 创建新的 provider 实例,绑定到新网络
-          const newProvider = new ethers.BrowserProvider(window.ethereum);
-          const network = await newProvider.getNetwork();
-          const balance = await newProvider.getBalance(walletData.address);
-          const ethBalance = ethers.formatEther(balance);
-          const formattedBalance = parseFloat(ethBalance).toFixed(2);
-
-          const newNetwork = NETWORKS.find(
-            (n) => n.chainId === Number(network.chainId)
-          );
-
-          setWalletData({
-            ...walletData,
-            provider: newProvider, // 更新 provider
-            network: newNetwork?.name || networkName,
-            balance: {
-              amount: formattedBalance,
-              symbol: targetNetwork.symbol,
-            },
-          });
-        } catch (error) {
-          console.error("更新网络信息失败", error);
-        }
-      };
-
-      window.ethereum.once("chainChanged", handleChainChanged);
-
-      // 再切换网络
+      // 切换网络
       await walletData.provider.send("wallet_switchEthereumChain", [
         { chainId: `0x${targetNetwork?.chainId.toString(16)}` },
       ]);
-    } catch (error: any) {
+
+      const newProvider = new ethers.BrowserProvider(detectedWallet.provider);
+      // 切换成功后，更新余额和网络信息
+      const balance = await newProvider.getBalance(walletData.address);
+      const newBalance = ethers.formatEther(balance);
+      const formattedBalance = parseFloat(newBalance).toFixed(2);
+
+      setWalletData({
+        ...walletData,
+        provider: newProvider,
+        balance: {
+          amount: formattedBalance,
+          symbol: targetNetwork?.symbol,
+        },
+        network: targetNetwork?.name,
+      });
+    } catch (error) {
       console.error("切换网络失败", error);
-      // 清理监听器
-      if (window.ethereum?.removeAllListeners) {
-        window.ethereum.removeAllListeners("chainChanged");
-      }
     }
   };
 
@@ -76,33 +61,14 @@ export default function TestWallet() {
 
   const onLogout = async () => {
     try {
-      // 断开 MetaMask 连接
-      if (window.ethereum?.request) {
-        // 注意: MetaMask 没有官方的断开连接方法,但我们可以清除权限
-        // 用户需要在 MetaMask 中手动断开,或者刷新页面后重新授权
-        await window.ethereum
-          .request({
-            method: "wallet_revokePermissions",
-            params: [{ eth_accounts: {} }],
-          })
-          .catch(() => {
-            // 如果不支持 wallet_revokePermissions,忽略错误
-            console.log("wallet_revokePermissions not supported");
-          });
-      }
-
-      // 移除所有监听器
-      if (window.ethereum?.removeAllListeners) {
-        window.ethereum.removeAllListeners();
-      }
-
-      // 清除本地状态
-      setWalletData(DEFAULT_WALLET_DATA);
+      await detectedWallet.provider.request({
+        method: "wallet_revokePermissions",
+        params: [{ eth_accounts: {} }],
+      });
     } catch (error) {
-      console.error("注销失败", error);
-      // 即使出错也清除状态
+      console.error("wallet_revokePermissions not supported", error);
+    } finally {
       setWalletData(DEFAULT_WALLET_DATA);
-      window.location.reload();
     }
   };
 
@@ -175,7 +141,11 @@ export default function TestWallet() {
           <h1 className={walletStyles.title}>Welcome connect !</h1>
         </div>
       ) : (
-        <ConnectWalletModal setWalletData={setWalletData} />
+        <ConnectWalletModal
+          setWalletData={setWalletData}
+          detectedWallets={detectedWallets}
+          setDetectedWallets={setDetectedWallets}
+        />
       )}
     </div>
   );
