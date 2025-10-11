@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { WalletData } from "@/interface";
 
 const DEFAULT_WALLET_DATA: WalletData = {
-  address: "",
+  address: `0x`,
   balance: {
     amount: "0.00",
     symbol: "-",
@@ -11,6 +11,7 @@ const DEFAULT_WALLET_DATA: WalletData = {
   walletName: "",
   provider: null,
   network: "",
+  connector: null,
 };
 
 const useWalletData = () => {

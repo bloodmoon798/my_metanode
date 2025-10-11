@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { ethers } from "ethers";
 import ConnectWalletModal from "@/components/ConnectWalletModal";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import { NETWORKS, WALLETS } from "@/constants";
 import styles from "@/styles/Home.module.css";
 import walletStyles from "@/styles/Wallet.module.css";
 import type { EIP6963ProviderDetail } from "@/interface";
+import { useAccount, useBalance } from "wagmi";
 
 export default function TestWallet() {
   const { DEFAULT_WALLET_DATA, walletData, setWalletData } = useWalletData();
@@ -15,9 +16,9 @@ export default function TestWallet() {
     EIP6963ProviderDetail[]
   >([]);
 
-  const detectedWallet = detectedWallets.find(
-    (item) => item.info.name === walletData.walletName
-  )!;
+  // const detectedWallet = detectedWallets.find(
+  //   (item) => item.info.name === walletData.walletName
+  // )!;
 
   const walletIconSrc = WALLETS.find(
     (item) => item.name === walletData.walletName
@@ -26,33 +27,55 @@ export default function TestWallet() {
   const isConnected = walletData.connected;
 
   const currentNetwork = NETWORKS.find((n) => n.name === walletData.network)!;
+  const { address } = useAccount();
+
+  const { data: balance } = useBalance({ address });
+  // console.log(balance, "balance");
+
+  const formattedBalance = useMemo(() => {
+    return balance
+      ? parseFloat(ethers.formatEther(balance?.value)).toFixed(2)
+      : "0.00";
+  }, [balance]);
 
   const handleChangeNetwork = async (networkName: string) => {
     const targetNetwork = NETWORKS.find((n) => n.name === networkName)!;
     try {
-      // 切换网络
-      await walletData.provider.send("wallet_switchEthereumChain", [
-        { chainId: `0x${targetNetwork?.chainId.toString(16)}` },
-      ]);
-
-      const newProvider = new ethers.BrowserProvider(detectedWallet.provider);
-      // 切换成功后，更新余额和网络信息
-      const balance = await newProvider.getBalance(walletData.address);
-      const newBalance = ethers.formatEther(balance);
-      const formattedBalance = parseFloat(newBalance).toFixed(2);
-
+      await walletData.connector.switchChain({
+        chainId: targetNetwork.chainId,
+      });
       setWalletData({
         ...walletData,
-        provider: newProvider,
-        balance: {
-          amount: formattedBalance,
-          symbol: targetNetwork?.symbol,
-        },
-        network: targetNetwork?.name,
+        network: targetNetwork.name.toLowerCase(),
       });
     } catch (error) {
       console.error("切换网络失败", error);
     }
+    // const targetNetwork = NETWORKS.find((n) => n.name === networkName)!;
+    // try {
+    //   // 切换网络
+    //   await walletData.provider.send("wallet_switchEthereumChain", [
+    //     { chainId: `0x${targetNetwork?.chainId.toString(16)}` },
+    //   ]);
+
+    //   const newProvider = new ethers.BrowserProvider(detectedWallet.provider);
+    //   // 切换成功后，更新余额和网络信息
+    //   const balance = await newProvider.getBalance(walletData.address);
+    //   const newBalance = ethers.formatEther(balance);
+    //   const formattedBalance = parseFloat(newBalance).toFixed(2);
+
+    //   setWalletData({
+    //     ...walletData,
+    //     provider: newProvider,
+    //     balance: {
+    //       amount: formattedBalance,
+    //       symbol: targetNetwork?.symbol,
+    //     },
+    //     network: targetNetwork?.name,
+    //   });
+    // } catch (error) {
+    //   console.error("切换网络失败", error);
+    // }
   };
 
   const handleChangeInnerWallet = (innerWallet: string) => {
@@ -61,15 +84,22 @@ export default function TestWallet() {
 
   const onLogout = async () => {
     try {
-      await detectedWallet.provider.request({
-        method: "wallet_revokePermissions",
-        params: [{ eth_accounts: {} }],
-      });
+      await walletData.connector.disconnect();
     } catch (error) {
       console.error("wallet_revokePermissions not supported", error);
     } finally {
       setWalletData(DEFAULT_WALLET_DATA);
     }
+    // try {
+    //   await detectedWallet.provider.request({
+    //     method: "wallet_revokePermissions",
+    //     params: [{ eth_accounts: {} }],
+    //   });
+    // } catch (error) {
+    //   console.error("wallet_revokePermissions not supported", error);
+    // } finally {
+    //   setWalletData(DEFAULT_WALLET_DATA);
+    // }
   };
 
   return (
@@ -99,7 +129,8 @@ export default function TestWallet() {
               </select>
             </div>
             <div className={walletStyles.balanceInfo}>
-              {walletData.balance.amount} {walletData.balance.symbol}
+              {/* {walletData.balance.amount} {walletData.balance.symbol} */}
+              {formattedBalance} {balance?.symbol}
             </div>
             <div className={walletStyles.addressInfo}>
               <Image
@@ -112,12 +143,14 @@ export default function TestWallet() {
 
               <select
                 className={walletStyles.addressSelect}
-                defaultValue={walletData.address}
+                // defaultValue={walletData.address}
+                defaultValue={address}
                 onChange={(e) => {
                   handleChangeInnerWallet(e.target.value);
                 }}
               >
-                {[walletData.address].map((item) => (
+                {/* {[walletData.address].map((item) => ( */}
+                {[address].map((item) => (
                   <option
                     key={item}
                     className={walletStyles.addressOption}
