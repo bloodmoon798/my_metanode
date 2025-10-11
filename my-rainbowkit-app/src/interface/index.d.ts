@@ -31,4 +31,5 @@ export type ConnectWalletModalProps = {
   setDetectedWallets: React.Dispatch<
     React.SetStateAction<EIP6963ProviderDetail[]>
   >;
+  customStyles?: React.CSSProperties;
 };

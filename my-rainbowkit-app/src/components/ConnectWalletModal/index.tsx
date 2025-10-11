@@ -15,10 +15,11 @@ import { useConnect } from "wagmi";
 import { sepolia } from "wagmi/chains";
 
 export default function ConnectWalletModal({
+  // detectedWallets,
+  // setDetectedWallets,
   setWalletData,
-}: // detectedWallets,
-// setDetectedWallets,
-ConnectWalletModalProps) {
+  customStyles,
+}: ConnectWalletModalProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -115,7 +116,11 @@ ConnectWalletModalProps) {
 
   return (
     <div>
-      <button className={styles.testButton} onClick={() => setIsOpen(true)}>
+      <button
+        className={styles.testButton}
+        onClick={() => setIsOpen(true)}
+        style={{ ...customStyles }}
+      >
         连接钱包
       </button>
       {isOpen && (
