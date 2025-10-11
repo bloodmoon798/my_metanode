@@ -1,10 +1,10 @@
 import React from "react";
 import StakePageLayout from "@/components/StakePageLayout";
 
-export default function Stake() {
+export default function Withdraw() {
   return (
     <StakePageLayout>
-      <div>123</div>
+      <div>456</div>
     </StakePageLayout>
   );
 }
