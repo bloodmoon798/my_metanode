@@ -13,15 +13,16 @@ export interface EIP6963AnnounceProviderEvent extends Event {
 }
 
 export interface WalletData {
-  address: string;
-  balance: {
-    amount: string;
-    symbol: string;
+  address?: `0x${string}`;
+  balance?: {
+    amount?: BigNumberish;
+    symbol?: string;
   };
   connected: boolean;
   walletName: string;
-  provider: any;
-  network: string;
+  provider?: any;
+  network?: string;
+  connector?: any;
 }
 
 export type ConnectWalletModalProps = {
