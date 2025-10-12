@@ -6,7 +6,7 @@ export const WALLETS = [
 export const NETWORKS = [
   {
     name: "sepolia",
-    icon: "https://sepolia.etherscan.io/images/favicon3-light.ico",
+    icon: "https://sepolia.etherscan.io/images/svg/brands/ethereum-original-light.svg",
     chainId: 11155111,
     symbol: "ETH",
     rpcUrl: "https://sepolia.infura.io/v3/80b716a0b09a47ff8e017e86e1cfe709",

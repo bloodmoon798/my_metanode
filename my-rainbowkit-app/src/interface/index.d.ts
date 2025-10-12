@@ -18,7 +18,7 @@ export interface WalletData {
     amount?: BigNumberish;
     symbol?: string;
   };
-  connected: boolean;
+  connected?: boolean;
   walletName: string;
   provider?: any;
   network?: string;
@@ -26,9 +26,9 @@ export interface WalletData {
 }
 
 export type ConnectWalletModalProps = {
-  setWalletData: React.Dispatch<React.SetStateAction<WalletData>>;
-  detectedWallets: EIP6963ProviderDetail[];
-  setDetectedWallets: React.Dispatch<
+  setWalletData?: React.Dispatch<React.SetStateAction<WalletData>>;
+  detectedWallets?: EIP6963ProviderDetail[];
+  setDetectedWallets?: React.Dispatch<
     React.SetStateAction<EIP6963ProviderDetail[]>
   >;
   customStyles?: React.CSSProperties;

@@ -39,12 +39,12 @@ export default function ConnectWalletModal({
       // console.log("connector", connector);
       if (connector) {
         await connector.connect({ chainId: sepolia.id });
-        setWalletData({
-          connector,
-          walletName,
-          connected: true,
-          network: sepolia.name.toLowerCase(),
-        });
+
+        // setWalletData({
+        //   walletName,
+        //   // connected: true,
+        //   network: sepolia.name.toLowerCase(),
+        // });
         setIsOpen(false);
       }
     } catch (error: any) {
