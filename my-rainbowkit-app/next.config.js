@@ -11,7 +11,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "sepolia.etherscan.io",
         port: "",
-        pathname: "/images/**",
+        pathname: "/images/svg/brands/**",
       },
       {
         protocol: "https",

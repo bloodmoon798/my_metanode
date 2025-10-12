@@ -1,36 +1,42 @@
-import React, { useState, useMemo } from "react";
+import React, { /* useState, */ useMemo } from "react";
 import { ethers } from "ethers";
 import ConnectWalletModal from "@/components/ConnectWalletModal";
 import Image from "next/image";
-import useWalletData from "@/hooks/useWalletData";
+// import useWalletData from "@/hooks/useWalletData";
 import { NETWORKS, WALLETS } from "@/constants";
 import styles from "@/styles/Home.module.css";
 import walletStyles from "@/styles/Wallet.module.css";
-import type { EIP6963ProviderDetail } from "@/interface";
-import { useAccount, useBalance } from "wagmi";
+// import type { EIP6963ProviderDetail } from "@/interface";
+import { useAccount, useBalance, useChainId, useDisconnect } from "wagmi";
 
 export default function TestWallet() {
-  const { DEFAULT_WALLET_DATA, walletData, setWalletData } = useWalletData();
+  // const { DEFAULT_WALLET_DATA, walletData, setWalletData } = useWalletData();
 
-  const [detectedWallets, setDetectedWallets] = useState<
-    EIP6963ProviderDetail[]
-  >([]);
+  // const [detectedWallets, setDetectedWallets] = useState<
+  //   EIP6963ProviderDetail[]
+  // >([]);
 
   // const detectedWallet = detectedWallets.find(
   //   (item) => item.info.name === walletData.walletName
   // )!;
 
+  const { disconnect } = useDisconnect();
+
+  // 获取当前链 ID
+  const chainId = useChainId();
+
+  const currentNetwork = useMemo(
+    () => NETWORKS.find((n) => n.chainId === chainId)!,
+    [chainId]
+  );
+
+  const { address, isConnected, connector } = useAccount();
+
   const walletIconSrc = WALLETS.find(
-    (item) => item.name === walletData.walletName
+    (item) => item.name === connector?.name
   )?.icon;
 
-  const isConnected = walletData.connected;
-
-  const currentNetwork = NETWORKS.find((n) => n.name === walletData.network)!;
-  const { address } = useAccount();
-
   const { data: balance } = useBalance({ address });
-  // console.log(balance, "balance");
 
   const formattedBalance = useMemo(() => {
     return balance
@@ -41,13 +47,13 @@ export default function TestWallet() {
   const handleChangeNetwork = async (networkName: string) => {
     const targetNetwork = NETWORKS.find((n) => n.name === networkName)!;
     try {
-      await walletData.connector.switchChain({
+      await connector?.switchChain({
         chainId: targetNetwork.chainId,
       });
-      setWalletData({
-        ...walletData,
-        network: targetNetwork.name.toLowerCase(),
-      });
+      // setWalletData({
+      //   ...walletData,
+      //   network: targetNetwork.name.toLowerCase(),
+      // });
     } catch (error) {
       console.error("切换网络失败", error);
     }
@@ -82,13 +88,11 @@ export default function TestWallet() {
     console.log("Selected innerWallet:", innerWallet);
   };
 
-  const onLogout = async () => {
+  const onLogout = () => {
     try {
-      await walletData.connector.disconnect();
+      disconnect();
     } catch (error) {
       console.error("wallet_revokePermissions not supported", error);
-    } finally {
-      setWalletData(DEFAULT_WALLET_DATA);
     }
     // try {
     //   await detectedWallet.provider.request({
@@ -118,7 +122,7 @@ export default function TestWallet() {
               />
               <select
                 className={walletStyles.networkSelect}
-                defaultValue={walletData.network}
+                value={currentNetwork?.name || ""}
                 onChange={(e) => handleChangeNetwork(e.target.value)}
               >
                 {NETWORKS.map((network) => (
@@ -175,9 +179,9 @@ export default function TestWallet() {
         </div>
       ) : (
         <ConnectWalletModal
-          setWalletData={setWalletData}
-          detectedWallets={detectedWallets}
-          setDetectedWallets={setDetectedWallets}
+        // setWalletData={setWalletData}
+        // detectedWallets={detectedWallets}
+        // setDetectedWallets={setDetectedWallets}
         />
       )}
     </div>
