@@ -91,6 +91,19 @@ export default function ConnectWalletModal({
   // const walletMap = new Map<string, EIP6963ProviderDetail>();
 
   // // 监听钱包广播事件
+  // //  官网示例如下, eg: ----------------------------------
+  //   const handleProvider = (event: any) => {
+  //     const { info, provider } = event.detail;
+
+  //     if (info.name === "MetaMask") {
+  //       // 授权 MetaMask 钱包
+  //       const metaProvider = new ethers.BrowserProvider(provider);
+  //       await metaProvider.send("eth_requestAccounts", []);
+  //     }
+  //   };
+  // // -------------------------------------------------
+
+  // 我的实现
   // const handleAnnouncement = (event: EIP6963AnnounceProviderEvent) => {
   //   const { detail } = event;
   //   walletMap.set(detail.info.uuid, detail);
