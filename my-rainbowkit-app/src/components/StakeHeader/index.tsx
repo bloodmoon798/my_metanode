@@ -3,12 +3,11 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import MenuItem from "@mui/material/MenuItem";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import styles from "@/styles/Stake.module.css";
 import Link from "next/link";
-import ConnectWalletModal from "@/components/ConnectWalletModal";
 import { usePathname } from "next/navigation";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const pages = ["Stake", "Withdraw"];
 
@@ -60,20 +59,7 @@ export default function StakeHeader() {
             })}
           </div>
           <div className={styles.connectWalletButton}>
-            <ConnectWalletModal
-              customStyles={{
-                fontSize: 16,
-                background: "none",
-                border: "none",
-                color: "aqua",
-                cursor: "pointer",
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
-                margin: 0,
-                height: "100%",
-                width: "auto",
-              }}
-            />
+            <ConnectButton />
           </div>
         </Toolbar>
       </Container>
