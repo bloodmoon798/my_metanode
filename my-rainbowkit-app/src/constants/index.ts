@@ -27,3 +27,5 @@ export const NETWORKS = [
     rpcUrl: "https://mainnet.infura.io/v3/80b716a0b09a47ff8e017e86e1cfe709",
   },
 ];
+
+export const PID = 0;

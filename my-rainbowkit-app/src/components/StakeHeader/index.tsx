@@ -13,7 +13,6 @@ const pages = ["Stake", "Withdraw"];
 
 export default function StakeHeader() {
   const pathName = usePathname();
-  console.log("pathName", pathName);
 
   return (
     <AppBar
