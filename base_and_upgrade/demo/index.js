@@ -6,7 +6,7 @@ const provider = new ethers.JsonRpcProvider(
 );
 
 // ✅ 替换为部署好的合约地址
-const contractAddress = "0xb6116CB24d495beEdD326fD2a0b6567fde28983e";
+const contractAddress = "YOUR_CONTRACT_ADDRESS";
 
 // ✅ 替换为合约 ABI 中的 events 部分
 const abi = ["event Deposit(address indexed sender, uint256 amount)"];

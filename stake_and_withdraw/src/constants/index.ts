@@ -9,7 +9,7 @@ export const NETWORKS = [
     icon: "https://sepolia.etherscan.io/images/svg/brands/ethereum-original-light.svg",
     chainId: 11155111,
     symbol: "ETH",
-    rpcUrl: "https://sepolia.infura.io/v3/80b716a0b09a47ff8e017e86e1cfe709",
+    rpcUrl: "https://sepolia.infura.io/v3/YOUR_API_KEY",
   },
   {
     name: "matic-amoy",
@@ -17,14 +17,14 @@ export const NETWORKS = [
     chainId: 80002,
     symbol: "AMO",
     rpcUrl:
-      "https://polygon-amoy.infura.io/v3/80b716a0b09a47ff8e017e86e1cfe709",
+      "https://polygon-amoy.infura.io/v3/YOUR_API_KEY",
   },
   {
     name: "mainnet",
     icon: "https://etherscan.io/images/svg/brands/ethereum-original.svg",
     chainId: 1,
     symbol: "ETH",
-    rpcUrl: "https://mainnet.infura.io/v3/80b716a0b09a47ff8e017e86e1cfe709",
+    rpcUrl: "https://mainnet.infura.io/v3/YOUR_API_KEY",
   },
 ];
 
